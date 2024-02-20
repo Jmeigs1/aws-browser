@@ -1,0 +1,7 @@
+Website = "https://github.com/jmeigs1/aws-browser"
+
+[Details]
+  Icon = "Icon.png"
+  Name = "AWS Browser"
+  Version = "1.0.0"
+  Build = 2
