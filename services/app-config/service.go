@@ -55,7 +55,10 @@ func InitAWS() {
 }
 
 func getApps() AppConfigDataSlice {
-	data, err := AppConfigClient.ListApplications(context.Background(), &appconfig.ListApplicationsInput{})
+	data, err := AppConfigClient.ListApplications(
+		context.Background(),
+		&appconfig.ListApplicationsInput{},
+	)
 	if err != nil {
 		panic(err)
 	}
@@ -75,9 +78,12 @@ func getApps() AppConfigDataSlice {
 }
 
 func getEnvs(appId string) AppConfigDataSlice {
-	data, err := AppConfigClient.ListEnvironments(context.Background(), &appconfig.ListEnvironmentsInput{
-		ApplicationId: &appId,
-	})
+	data, err := AppConfigClient.ListEnvironments(
+		context.Background(),
+		&appconfig.ListEnvironmentsInput{
+			ApplicationId: &appId,
+		},
+	)
 	if err != nil {
 		panic(err)
 	}

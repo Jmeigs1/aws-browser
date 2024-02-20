@@ -18,7 +18,7 @@ type appConfigViewerState struct {
 
 var state appConfigViewerState = appConfigViewerState{}
 
-func Start() *fyne.Container {
+func Render() *fyne.Container {
 	// Data display
 	configData := binding.NewString()
 	input := widget.NewMultiLineEntry()
@@ -72,7 +72,7 @@ func handleSubmit(b binding.String) func() {
 	return func() {
 		data, err := getDeployedConfig(state.AppId, state.EnvId, state.ConfigId)
 		if err != nil {
-			return
+			b.Set("Error: " + err.Error())
 		}
 		b.Set(data)
 	}

@@ -2,9 +2,12 @@ package main
 
 import (
 	appconfig "aws-browser/services/app-config"
+	"aws-browser/settings"
 
 	"fyne.io/fyne/v2"
 	"fyne.io/fyne/v2/app"
+	"fyne.io/fyne/v2/container"
+	"fyne.io/fyne/v2/layout"
 )
 
 func main() {
@@ -17,6 +20,12 @@ func main() {
 	w.SetMaster()
 	w.Resize(fyne.NewSize(600, 530))
 
-	w.SetContent(appconfig.Start())
+	layout := container.New(
+		layout.NewVBoxLayout(),
+		settings.Render(),
+		appconfig.Render(),
+	)
+
+	w.SetContent(layout)
 	w.ShowAndRun()
 }
