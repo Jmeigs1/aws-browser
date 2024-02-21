@@ -18,7 +18,7 @@ type appConfigViewerState struct {
 
 var state appConfigViewerState = appConfigViewerState{}
 
-func Render() *fyne.Container {
+func Render(w fyne.Window) *fyne.Container {
 	// Data display
 	configData := binding.NewString()
 	input := widget.NewMultiLineEntry()

@@ -22,8 +22,8 @@ func main() {
 
 	layout := container.New(
 		layout.NewVBoxLayout(),
-		settings.Render(),
-		appconfig.Render(),
+		settings.Render(w),
+		appconfig.Render(w),
 	)
 
 	w.SetContent(layout)
