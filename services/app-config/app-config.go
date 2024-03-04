@@ -25,7 +25,7 @@ func Render(w fyne.Window) *fyne.Container {
 	input.Bind(configData)
 	input.SetMinRowsVisible(18)
 
-	submitButton := widget.NewButton("Submit", handleSubmit(configData))
+	submitButton := widget.NewButton("Fetch Config", handleSubmit(configData))
 
 	envSelector := &widget.Select{}
 	envSelector.Options = []string{}
@@ -65,11 +65,17 @@ func Render(w fyne.Window) *fyne.Container {
 		configSelector,
 	)
 
-	return container.New(layout.NewVBoxLayout(), input, optionsContainer, submitButton)
+	return container.New(
+		layout.NewVBoxLayout(),
+		input,
+		optionsContainer,
+		submitButton,
+	)
 }
 
 func handleSubmit(b binding.String) func() {
 	return func() {
+		b.Set("Loading....")
 		data, err := getDeployedConfig(state.AppId, state.EnvId, state.ConfigId)
 		if err != nil {
 			b.Set("Error: " + err.Error())
