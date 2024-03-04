@@ -79,6 +79,7 @@ func handleSubmit(b binding.String) func() {
 		data, err := getDeployedConfig(state.AppId, state.EnvId, state.ConfigId)
 		if err != nil {
 			b.Set("Error: " + err.Error())
+			return
 		}
 		b.Set(data)
 	}
